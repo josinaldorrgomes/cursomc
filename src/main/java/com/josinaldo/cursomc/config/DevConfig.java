@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.josinaldo.cursomc.services.DBService;
 import com.josinaldo.cursomc.services.EmailService;
-import com.josinaldo.cursomc.services.MockEmailService;
+import com.josinaldo.cursomc.services.SmtpEmailService;
 
 @Configuration
 @Profile("dev")
-public class TestConfig {
+public class DevConfig {
 
 	@Autowired
 	private DBService dbService;
@@ -26,7 +26,7 @@ public class TestConfig {
 	
 	@Bean
 	public EmailService emailService() {
-		return new MockEmailService();
+		return new SmtpEmailService();
 	}
 
 }

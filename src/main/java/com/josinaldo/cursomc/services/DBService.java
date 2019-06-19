@@ -97,11 +97,11 @@ public class DBService {
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 
-		Estado est1 = new Estado(null, "Minas Gerais");
-		Estado est2 = new Estado(null, "São Paulo");
-		Cidade c1 = new Cidade(null, "Uberlândia", est1);
-		Cidade c2 = new Cidade(null, "São Paulo", est2);
-		Cidade c3 = new Cidade(null, "Campinas", est2);
+		Estado est1 = new Estado(null, "Rio Grande do Norte");
+		Estado est2 = new Estado(null, "Pernambuco");
+		Cidade c1 = new Cidade(null, "Natal", est1);
+		Cidade c2 = new Cidade(null, "Recife", est2);
+		Cidade c3 = new Cidade(null, "Caruaru", est2);
 
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
@@ -109,12 +109,12 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Josinaldo Gomes", "josinaldorobertorocha@gmail.com", "07848075400", TipoCliente.PESSOAFISICA);
 
-		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+		cli1.getTelefones().addAll(Arrays.asList("8433434213", "84999430032"));
 
-		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cli1, c1);
-		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		Endereco e1 = new Endereco(null, "Rua Lúcia Viveiros", "255", "Torre 6 Apto 202", "Neópolis", "59086005", cli1, c1);
+		Endereco e2 = new Endereco(null, "Rua Rodovia BR 304, km 11,5", "675", "", "Parque de Exposições", "59146750", cli1, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
