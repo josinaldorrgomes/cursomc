@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.josinaldo.cursomc.domain.Categoria;
@@ -51,6 +52,8 @@ public class DBService {
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public void instantiateDatabase() throws ParseException {
 
@@ -109,12 +112,14 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Josinaldo Gomes", "josinaldo.gomes@ciahering.com.br", "07848075400", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Josinaldo Roberto Rocha Gomes", "josinaldo.gomes@ciahering.com.br",
+				"07848075400", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("/;@8ZNz9D5B"));
 
-		cli1.getTelefones().addAll(Arrays.asList("8433434213", "84999430032"));
+		cli1.getTelefones().addAll(Arrays.asList("84999430032", "8433434213"));
 
-		Endereco e1 = new Endereco(null, "Rua Lúcia Viveiros", "255", "Torre 6 Apto 202", "Neópolis", "59086005", cli1, c1);
-		Endereco e2 = new Endereco(null, "Rua Rodovia BR 304, km 11,5", "675", "", "Parque de Exposições", "59146750", cli1, c2);
+		Endereco e1 = new Endereco(null, "Rua Lúcia Viveiros", "255", "Torre 6 Apto 202", "Neópolis", "59086005", cli1,
+				c1);
+		Endereco e2 = new Endereco(null, "Rua Edgar Feitosa", "136", "Residência", "Rendeiras", "55022230", cli1, c3);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
