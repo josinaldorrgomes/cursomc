@@ -16,7 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-		private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**" };
+		private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**", "/clientes/**" };
 	private static final String[] PUBLIC_MATCHERS_POST = { "/pedidos/**" };
 
 	@Override

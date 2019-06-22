@@ -20,6 +20,7 @@ import com.josinaldo.cursomc.domain.PagamentoComCartao;
 import com.josinaldo.cursomc.domain.Pedido;
 import com.josinaldo.cursomc.domain.Produto;
 import com.josinaldo.cursomc.domain.enums.EstadoPagamento;
+import com.josinaldo.cursomc.domain.enums.Perfil;
 import com.josinaldo.cursomc.domain.enums.TipoCliente;
 import com.josinaldo.cursomc.repositories.CategoriaRepository;
 import com.josinaldo.cursomc.repositories.CidadeRepository;
@@ -112,24 +113,29 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Josinaldo Roberto Rocha Gomes", "josinaldo.gomes@ciahering.com.br",
-				"07848075400", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("/;@8ZNz9D5B"));
+		Cliente cli1 = new Cliente(null, "Cliente 1", "josinaldo.gomes@ciahering.com.br",
+				"58344894000", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("/;@8ZNz9D5B"));
+		Cliente cli2 = new Cliente(null, "Cliente 2", "josinaldo.gomes@ciahering.com.br",
+				"28587241052", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("/;@8ZNz9D5B"));
+		cli2.addPerfil(Perfil.ADMIN);
 
 		cli1.getTelefones().addAll(Arrays.asList("84999430032", "8433434213"));
+		cli2.getTelefones().addAll(Arrays.asList("84999430032", "8433434213"));
 
-		Endereco e1 = new Endereco(null, "Rua Lúcia Viveiros", "255", "Torre 6 Apto 202", "Neópolis", "59086005", cli1,
+		Endereco e1 = new Endereco(null, "Rua Lúcia Viveiros", "255", "Torre 6 Apto 202", "Neópolis", "59144346", cli1,
 				c1);
-		Endereco e2 = new Endereco(null, "Rua Edgar Feitosa", "136", "Residência", "Rendeiras", "55022230", cli1, c3);
+		Endereco e2 = new Endereco(null, "Rua Edgar Feitosa", "136", "Residência", "Rendeiras", "59076220", cli2, c3);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
-		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli2, e2);
 
 		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
